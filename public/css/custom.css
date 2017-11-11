@@ -1,0 +1,139 @@
+body{
+   background-color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a{
+   text-transform: uppercase;
+   font-weight: bold;
+}
+
+.main-logo{
+   height: 50px;
+}
+
+.our-team .member-detail{
+   width: 80%;
+}
+
+.our-team .member-details{
+   width: 75%;
+}
+
+.our-team img.detail-photo{
+   height: auto;
+   width: auto;
+}
+
+#testi{
+   padding-top: 100px;
+   height: 500px;
+}
+
+.team-spacing{
+   margin-bottom: 150px;
+}
+
+.header-font{
+   color: #ffffff;
+}
+
+.panel-login{
+   margin-top: 20%;
+}
+
+.btn.btn-link:hover{
+   color: blue;
+}
+
+.navbar-nav a{
+   font-size: 16px;
+   font-weight: bold;
+}
+
+.navbar-inverse .navbar-nav>li>a{
+   color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover{
+   font-size: 18px;
+}
+
+.navbar-inverse .navbar-nav li.active{
+   background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
+   color: #000000;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.open>a{
+   background-color: #ffffff;
+   background-image: none !important;
+   box-shadow: none !important;
+}
+
+.menu-header{
+   margin-top: 5px;
+   padding-top: 10px;
+   background-color: #D4D4D4;
+}
+
+.menu-header a{
+   font-size: 16px;
+   font-weight: bold;
+   padding: 13px;
+   padding-right: 20px;
+   margin-right: -5px;
+   margin-right: 10px;
+   border-bottom: none;
+   margin-top: -5px;
+
+}
+
+.menu-header a.active{
+   background-color: #ffffff;
+   border: solid 2px;
+   border-bottom: none;
+}
+
+.menu-header a:hover{
+   font-size: 18px;
+}
+
+.menu-header-border{
+   margin-top: 7px;
+   border-bottom: solid 2px;
+}
+
+.form-input{
+   font-size: 14px;
+}
+
+.modal-dialog label{
+   font-size: 14px;
+}
+
+.modal-header{
+   color: #000000;
+}
+
+.modal-body {
+   color: #000000;
+}
+
+.filterArea{
+   margin-top: 20px;
+}
+
+.navbar.navbar-inverse{
+   height: 60px;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
+   margin-top: -20px;
+   height: 35px;
+}
+
+.dataTables_filter{
+   margin-right: 10px;
+}
