@@ -20,7 +20,11 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Request $request)
+    public function index(Request $request){
+        return redirect('/admin/order');
+    }
+
+    public function order(Request $request)
     {
         $status = 0;
         if($request->has('status')){
@@ -37,9 +41,7 @@ class AdminController extends Controller
             $dateTo = $request->dateTo;
         }
 
-        $user = Auth::user();
-
-        return view('admin.home', array('user' => $user, 'status' => $status, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo));
+        return view('admin.order', array('status' => $status, 'dateFrom' => $dateFrom, 'dateTo' => $dateTo));
     }
 
     public function getData(Request $request){
@@ -81,7 +83,7 @@ class AdminController extends Controller
         $photo->description = $request->shopDescription;
         $photo->save();
 
-        return redirect('admin')->with('success', 'Sukses menyimpan data');
+        return redirect('admin/order')->with('success', 'Sukses menyimpan data');
     }
 
     public function editDataProcess(Request $request){
@@ -93,9 +95,9 @@ class AdminController extends Controller
             $photo->description = $request->shopDescription;
             $photo->save();
 
-            return redirect('admin')->with('success', 'Sukses mengubah data');
+            return redirect('admin/order')->with('success', 'Sukses mengubah data');
         } else{
-            return redirect('admin')->with('error', 'Terjadi kesalahan sistem');
+            return redirect('admin/order')->with('error', 'Terjadi kesalahan sistem');
         }
     }
 
@@ -105,9 +107,9 @@ class AdminController extends Controller
 
             $photo->delete();
 
-            return redirect('admin')->with('success', 'Sukses menghapus data');
+            return redirect('admin/order')->with('success', 'Sukses menghapus data');
         } else{
-            return redirect('admin')->with('error', 'Terjadi kesalahan sistem');
+            return redirect('admin/order')->with('error', 'Terjadi kesalahan sistem');
         }
     }
 
@@ -117,15 +119,15 @@ class AdminController extends Controller
             $photo->status = '1';
             $photo->save();
 
-            return redirect('admin')->with('success', 'Sukses menandai selesai');
+            return redirect('admin/order')->with('success', 'Sukses menandai selesai');
         } else{
-            return redirect('admin')->with('error', 'Terjadi kesalahan sistem');
+            return redirect('admin/order')->with('error', 'Terjadi kesalahan sistem');
         }
     }
 
 
     public function logout(){
         Auth::logout();
-        return redirect('/login');
+        return redirect('/');
     }
 }

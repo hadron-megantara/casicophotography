@@ -11,8 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('home');
+	if(Auth::check()){
+		return redirect('/admin');
+	} else{
+		return view('home');
+	}
 });
 
 Auth::routes();
@@ -20,7 +26,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
-Route::get('/logout', 'AdminController@logout')->name('admin.logout');
+Route::get('/admin/order', 'AdminController@order')->name('admin.order');
 
 # Photo
 Route::get('/admin/getData', 'AdminController@getData')->name('admin.getData');
@@ -29,3 +35,8 @@ Route::post('/admin/insert-process', 'AdminController@insertDataProcess')->name(
 Route::post('/admin/edit-process', 'AdminController@editDataProcess')->name('admin.editProcess');
 Route::post('/admin/delete-process', 'AdminController@deleteDataProcess')->name('admin.deleteProcess');
 Route::get('/admin/check-process', 'AdminController@checkDataProcess')->name('admin.checkProcess');
+
+Route::get('/galery', 'GaleryController@index')->name('galery');
+
+
+Route::get('/logout', 'AdminController@logout')->name('admin.logout');

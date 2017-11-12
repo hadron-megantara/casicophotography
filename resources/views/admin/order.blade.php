@@ -5,23 +5,23 @@
 <div class="page-content">
     <div class="content">
         <div class="page-title">
-            <h3>Pencatatan</h3>
+            <h3>Pembukuan</h3>
             <div class="pull-right" style="margin-top: 5px">
-                <a href="#materialModalAdd" class="btn btn-success btnAddMaterial" data-toggle="modal"><span class="fa fa-plus"></span> Tambah Pembelian</a>
+                <a href="#modalAdd" class="btn btn-success btnAdd" data-toggle="modal"><span class="fa fa-plus"></span> Tambah Data</a>
             </div>
         </div>
 
         @if(session('success'))
             <div class="text-center">
-                <div class="panel panel-success">
-                  <div class="panel-heading notification text-center">{{session('success')}}</div>
+                <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close"></a> {{session('success')}}
                 </div>
             </div>
         @endif
 
         <div class="filterArea">
             <div class="form-group" style="height: 100%;margin-bottom: 0;">
-                <div class="col-md-3">&nbsp;</div>
+                <div class="col-md-4">&nbsp;</div>
 
                 <div class="col-md-2" style="padding-top:20px">
                     <select id="filterBy" class="form-control">
@@ -41,8 +41,12 @@
                 <div class="col-md-2" style="padding-top:20px">
                     <button type="button" id="filterProcess" class="btn btn-primary" style="width: 100%"><span class="fa fa-search"> </span>Cari</button>
                 </div>
+
+                <div class="row"></div>
             </div>
         </div>
+
+        <div class="row"></div>
 
         <div class="table-responsive">
             <table id="listTable" class="table-bordered">
@@ -63,48 +67,46 @@
     </div>
 </div>
 
-<div id="modalEdit" class="modal fade" role="dialog" style="margin-top:1%;">
+<div id="modalAdd" class="modal fade" role="dialog" style="margin-top:1%;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-size: 24px;font-weight: bold">Ubah Data</h4>
+                <h4 class="modal-title" style="font-size: 24px;font-weight: bold">Tambah Data Pembukuan</h4>
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="{{ route('admin.editProcess') }}" role="form" id="editForm">
+                <form class="form-horizontal" method="POST" action="{{ route('admin.insertProcess') }}" role="form" id="addForm">
                     {!! csrf_field() !!}
-
                     <div class="form-group">
-                        <label for="editShopName" class="col-md-4 control-label">Nama Toko</label>
+                        <label for="editMaterialLength" class="col-md-4 control-label">Nama Toko</label>
 
                         <div class="col-md-6">
-                            <input id="editShopName" type="text" class="form-control" required placeholder="Masukkan Nama Toko" name="shopName">
-                            <input id="editShopId" type="hidden" name="shopId" required>
+                            <input id="shopName" name="shopName" type="text" class="form-control" placeholder="Masukkan Nama Toko" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="editShopStuff" class="col-md-4 control-label">Nama Barang</label>
+                        <label for="editMaterialLength" class="col-md-4 control-label">Nama Barang</label>
 
                         <div class="col-md-6">
-                            <input id="editShopStuff" type="text" class="form-control" required placeholder="Masukkan Nama Barang" name="shopStuff">
+                            <input id="shopStuff" type="text" name="shopStuff" class="form-control" placeholder="Masukkan Nama Barang" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="editShopTotal" class="col-md-4 control-label">Jumlah Barang</label>
+                        <label for="editMaterialLength" class="col-md-4 control-label">Jumlah</label>
 
                         <div class="col-md-6">
-                            <input id="editShopTotal" type="text" class="form-control" required placeholder="Masukkan Jumlah Barang" name="shopTotal">
+                            <input id="shopTotal" name="shopTotal" type="text" class="form-control" placeholder="Masukkan Jumlah" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="editShopDescription" class="col-md-4 control-label">Keterangan</label>
+                        <label for="editMaterialLength" class="col-md-4 control-label">Keterangan</label>
 
                         <div class="col-md-6">
-                            <textarea id="editShopDescription" class="form-control" required placeholder="Masukkan Keterangan" name="shopDescription" style="resize: none"></textarea>
+                            <textarea id="shopDescription" name="shopDescription" class="form-control" placeholder="Masukkan Keterangan" required style="resize: none;"></textarea>
                         </div>
                     </div>
                 </form>
@@ -112,7 +114,7 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
-                <button type="submit" class="btn btn-success" form="editForm"><span class="fa fa-save"></span> Simpan</button>
+                <button type="submit" class="btn btn-success" form="addForm"><span class="fa fa-save"></span> Simpan</button>
             </div>
         </div>
     </div>
@@ -237,6 +239,18 @@
 
         $('#filterProcess').click(function(){
             window.location = "{{ route('admin.order')}}" + '?status='+$("#filterBy").val()+'&dateFrom='+$("#filterDateFrom").val()+'&dateTo='+$("#filterDateTo").val();
+        });
+
+        $("#shopTotal").keypress(function (e) {
+            if (e.which < 48 || 57 < e.which)
+                e.preventDefault();
+        });
+
+        $('.btnAdd').click(function(){
+            $('#shopName').val('');
+            $('#shopTotal').val('');
+            $('#shopDescription').val('');
+            $('#shopStuff').val('');
         });
 	});
 </script>
