@@ -63,7 +63,7 @@ class AdminController extends Controller
             $dateTo = $request->dateTo;
         }
 
-        $data = AdminPhoto::select(['id', 'shop_name', 'name', 'total', 'description', 'price', 'total_price', 'status', 'created_at'])->where('status', $status)->orderBy('created_at', 'desc')->whereBetween('created_at', [$dateFrom, $dateTo])->get();
+        $data = AdminPhoto::select(['id', 'shop_name', 'name', 'total', 'description', 'price', 'total_price', 'status', 'customer_type', 'model', 'created_at'])->where('status', $status)->orderBy('created_at', 'desc')->whereBetween('created_at', [$dateFrom, $dateTo])->get();
 
         return Datatables::of($data)->make();
     }
@@ -80,6 +80,8 @@ class AdminController extends Controller
         $photo->shop_name = $request->shopName;
         $photo->name = $request->shopStuff;
         $photo->total = $request->shopTotal;
+        $photo->customer_type = $request->shopCustomerType;
+        $photo->model = $request->shopModel;
         $photo->description = $request->shopDescription;
         $photo->price = $request->shopPrice;
         $photo->total_price = $request->shopTotalPrice;
@@ -94,6 +96,8 @@ class AdminController extends Controller
             $photo->shop_name = $request->shopName;
             $photo->name = $request->shopStuff;
             $photo->total = $request->shopTotal;
+            $photo->customer_type = $request->shopCustomerType;
+            $photo->model = $request->shopModel;
             $photo->description = $request->shopDescription;
             $photo->price = $request->shopPrice;
             $photo->total_price = $request->shopTotalPrice;

@@ -108,7 +108,29 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="editMaterialLength" class="col-md-12 control-label">Keterangan</label>
+                            <label for="shopCustomerType" class="col-md-12 control-label">Tipe Pelanggan</label>
+
+                            <div class="col-md-12">
+                                <select id="shopCustomerType" name="shopCustomerType" class="form-control" required>
+                                    <option value="">Pilih Tipe Pelanggan</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="studio">Studio</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                             <label for="shopModel" class="col-md-12 control-label">Model</label>
+
+                            <div class="col-md-12">
+                                <input id="shopModel" name="shopModel" type="text" class="form-control" placeholder="Masukkan Model" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="shopDescription" class="col-md-12 control-label">Keterangan</label>
 
                             <div class="col-md-12">
                                 <textarea id="shopDescription" name="shopDescription" class="form-control" placeholder="Masukkan Keterangan" required style="resize: none;" rows="4"></textarea>
@@ -151,7 +173,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="font-size: 24px;font-weight: bold">Ubah Data Pembukuan</h4>
+                <h4 class="modal-title" style="font-size: 24px;font-weight: bold">Detail Data Pembukuan</h4>
             </div>
 
             <div class="modal-body">
@@ -182,6 +204,29 @@
 
                             <div class="col-md-12">
                                 <input id="editShopTotal" name="shopTotal" type="text" class="form-control" placeholder="Masukkan Jumlah" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="editShopCustomerType" class="col-md-12 control-label">Tipe Pelanggan</label>
+
+                            <div class="col-md-12">
+                                <select id="editShopCustomerType" name="shopCustomerType" class="form-control" required>
+                                    <option value="">Pilih Tipe Pelanggan</option>
+                                    <option value="marketing">Marketing</option>
+                                    <option value="studio">Studio</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6">
+                             <label for="editShopModel" class="col-md-12 control-label">Model</label>
+
+                            <div class="col-md-12">
+                                <input id="editShopModel" name="shopModel" type="text" class="form-control" placeholder="Masukkan Model" required>
                             </div>
                         </div>
 
@@ -218,7 +263,8 @@
             
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
-                <button type="submit" class="btn btn-success" form="editForm"><span class="fa fa-save"></span> Ubah</button>
+                <button type="submit" class="btn btn-success" form="editForm"><span class="fa fa-pencil"></span> Ubah</button>
+                <a class="btn btn-primary" id="setAsDone"><span class="fa fa-check"></span> Tandai Selesai</a>
             </div>
         </div>
     </div>
@@ -247,6 +293,8 @@
                         Nama Barang : <span id="deleteShopStuff"></span> <br/>
                         Jumlah : <span id="deleteShopTotal"></span> <br/>
                         Tanggal : <span id="deleteShopDate"></span> <br/>
+                        Tipe Pelanggan : <span id="deleteShopCustomerType"></span> <br/>
+                        Model : <span id="deleteShopModel"></span> <br/>
                         Keterangan : <span id="deleteShopDescription"></span> <br/>
                         Harga Satuan : <span id="deleteShopPrice"></span> <br/>
                         Total Harga : <span id="deleteShopTotalPrice"></span>
@@ -289,7 +337,6 @@
                         return "<div class='text-center'>"+data+"</div>";
                     }
                 },
-
                 { data: 'total', name: 'total', render: function(data, type, full){
                         return "<div class='text-center'>"+data+"</div>";
                     }
@@ -306,13 +353,9 @@
                     } 
                 },
                 { data: 'id', name: 'id', orderable: false, render: function(data, type, full) {
-                        var dataReturn = '<div class=""><a class="btn btn-success editData" id="edit_'+data+'" href="#modalEdit" data-toggle="modal" title="Ubah Data" style="margin-right:5px"><span class="fa fa-pencil"></span></a><a class="btn btn-danger deleteData" id="delete_'+data+'" href="#modalDelete" data-toggle="modal" title="Hapus Data"><span class="fa fa-trash"></span></a>';
+                        var dataReturn = '<div class=""><a class="btn btn-success editData" id="edit_'+data+'" href="#modalEdit" data-toggle="modal" title="Lihat Data" style="margin-right:5px"><span class="fa fa-search"></span></a><a class="btn btn-danger deleteData" id="delete_'+data+'" href="#modalDelete" data-toggle="modal" title="Hapus Data"><span class="fa fa-trash"></span></a>';
 
-                        if(full.status == 0){
-                            dataReturn = dataReturn + '<a class="btn btn-success activeData" id="check_'+data+'" href="{{ route('admin.checkProcess')}}?id='+data+'" title="Tandai Selesai" style="margin-left:5px"><span class="fa fa-check"></span></a>';
-                        }
-
-                        dataReturn = dataReturn + '<input type="hidden" id="shopName_'+data+'" value="'+full.shop_name+'" /><input type="hidden" id="shopStuff_'+data+'" value="'+full.name+'" /><input type="hidden" id="shopTotal_'+data+'" value="'+full.total+'" /><input type="hidden" id="shopDescription_'+data+'" value="'+full.description+'" /><input type="hidden" id="shopStatus_'+data+'" value="'+full.status+'" /><input type="hidden" id="shopDate_'+data+'" value="'+full.created_at+'" /><input type="hidden" id="shopPrice_'+data+'" value="'+full.price+'" /><input type="hidden" id="shopTotalPrice_'+data+'" value="'+full.total_price+'" /></div>';
+                        dataReturn = dataReturn + '<input type="hidden" id="shopName_'+data+'" value="'+full.shop_name+'" /><input type="hidden" id="shopStuff_'+data+'" value="'+full.name+'" /><input type="hidden" id="shopTotal_'+data+'" value="'+full.total+'" /><input type="hidden" id="shopDescription_'+data+'" value="'+full.description+'" /><input type="hidden" id="shopStatus_'+data+'" value="'+full.status+'" /><input type="hidden" id="shopDate_'+data+'" value="'+full.created_at+'" /><input type="hidden" id="shopPrice_'+data+'" value="'+full.price+'" /><input type="hidden" id="shopTotalPrice_'+data+'" value="'+full.total_price+'" /><input type="hidden" id="shopCustomerType_'+data+'" value="'+full.customer_type+'" /><input type="hidden" id="shopModel_'+data+'" value="'+full.model+'" /></div>';
 
                         return dataReturn;
                     }
@@ -333,11 +376,15 @@
             $('#editShopName').val($('#shopName_'+id).val());
             $('#editShopStuff').val($('#shopStuff_'+id).val());
             $('#editShopDescription').val($('#shopDescription_'+id).val());
+            $('#editShopCustomerType').val($('#shopCustomerType_'+id).val());
+            $('#editShopModel').val($('#shopModel_'+id).val());
             $('#editShopTotal').val($('#shopTotal_'+id).val());
             $('#editShopPrice').val($('#shopPrice_'+id).val());
             $('#editShopPriceHidden').val($('#shopPrice_'+id).val());
             $('#editShopTotalPrice').val($('#shopTotalPrice_'+id).val());
             $('#editShopTotalPriceHidden').val($('#shopTotalPrice_'+id).val());
+            $('#editShopCustomerType').val($('#shopCustomerType_'+id).val());
+            $('#editShopModel').val($('#shopModel_'+id).val());
 
             $('#editShopPrice').priceFormat({
                 prefix: 'Rp ',
@@ -360,10 +407,13 @@
             $('#deleteShopName').html($('#shopName_'+id).val());
             $('#deleteShopStuff').html($('#shopStuff_'+id).val());
             $('#deleteShopDescription').html($('#shopDescription_'+id).val());
+            $('#deleteShopCustomerType').html($('#shopCustomerType_'+id).val());
+            $('#deleteShopModel').html($('#shopModel_'+id).val());
             $('#deleteShopTotal').html($('#shopTotal_'+id).val());
             $('#deleteShopDate').html($('#shopDate_'+id).val());
             $('#deleteShopPrice').html($('#shopPrice_'+id).val());
             $('#deleteShopTotalPrice').html($('#shopTotalPrice_'+id).val());
+
         });
 
         $("#listTable").on("click", ".activeData", function(){
@@ -371,6 +421,10 @@
             id = id.substring(6);
 
             window.location = "{{ route('admin.order')}}" + '?status='+$("#filterBy").val()+'&dateFrom='+$("#filterDateFrom").val()+'&dateTo='+$("#filterDateTo").val();
+        });
+
+        $('#setAsDone').click(function(){
+            window.location = "{{ route('admin.checkProcess')}}" + '?id='+$("#editShopId").val();
         });
 
         $('#filterDateFrom').datepicker({

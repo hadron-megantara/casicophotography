@@ -18,6 +18,8 @@ class CreateAdminPhotosTable extends Migration
             $table->string('shop_name');
             $table->string('name');
             $table->integer('total');
+            $table->string('customer_type');
+            $table->string('model');
             $table->string('description');
             $table->integer('price');
             $table->integer('total_price');
