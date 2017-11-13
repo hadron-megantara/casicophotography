@@ -19,6 +19,8 @@ class CreateAdminPhotosTable extends Migration
             $table->string('name');
             $table->integer('total');
             $table->string('description');
+            $table->integer('price');
+            $table->integer('total_price');
             $table->char('status')->default('0');
             $table->timestamps();
         });
