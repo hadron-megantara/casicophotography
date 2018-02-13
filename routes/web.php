@@ -37,6 +37,14 @@ Route::post('/admin/delete-process', 'AdminController@deleteDataProcess')->name(
 Route::get('/admin/check-process', 'AdminController@checkDataProcess')->name('admin.checkProcess');
 
 Route::get('/galery', 'GaleryController@index')->name('galery');
+Route::get('/galery/indoor', 'GaleryController@indoor')->name('galery.indoor');
+Route::get('/galery/outdoor', 'GaleryController@outdoor')->name('galery.outdoor');
+Route::get('/galery/wedding', 'GaleryController@wedding')->name('galery.wedding');
+Route::get('/galery/view', 'GaleryController@view')->name('galery.view');
+Route::get('/galery/object', 'GaleryController@object')->name('galery.object');
+
+Route::get('/about-us', 'AboutController@index')->name('about-us');
+Route::get('/contact-us', 'AboutController@contact')->name('contact-us');
 
 
 Route::get('/logout', 'AdminController@logout')->name('admin.logout');

@@ -13,35 +13,32 @@
                 <li>
                     <a href="/" @if(\Request::is('/')) class="active" @endif>home</a>
                 </li>
-                {{-- <li>
+                <!-- <li>
                     <a href="portfolio-3-cols.html">portfolio</a>
-                </li> --}}
+                </li> -->
                 <li>
-                    <a href="/galery" @if(\Request::is('galery')) class="active" @endif>gallery</a>
-                </li>
-                <li>
-                    <a href="about-us.html">about</a>
+                    <a href="#" @if(\Request::is('galery') || \Request::is('galery/*')) class="active" @endif>gallery</a>
                     <ul>
-                        <li><a href="about-us.html">about us</a></li>
-                        <li><a href="about-me.html">about me</a></li>
-                        <li><a href="about-minimal.html">about minimal</a></li>
+                        <li><a href="/galery/indoor">Indoor</a></li>
+                        <li><a href="/galery/outdoor">Outdoor</a></li>
+                        <li><a href="/galery/wedding">Wedding</a></li>
+                        <li><a href="/galery/object">Object</a></li>
+                        <li><a href="/galery/view">View</a></li>
                     </ul>
                 </li>
                 <li>
+                    <a href="/about-us" @if(\Request::is('about-us')) class="active" @endif>about</a>
+                </li>
+                <!-- <li>
                     <a href="blog-boxed.html">blog</a>
                     <ul>
                         <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                         <li><a href="blog-boxed.html">blog boxed</a></li>
                         <li><a href="blog-post.html">blog post</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li>
-                    <a href="contact-us.html">contact</a>
-                    <ul>
-                        <li><a href="contact-us.html">contact us</a></li>
-                        <li><a href="contact-me.html">contact me</a></li>
-                        <li><a href="contact-minimal.html">contact minimal</a></li>
-                    </ul>
+                    <a href="/contact-us" @if(\Request::is('contact-us')) class="active" @endif>contact</a>
                 </li>
             </ul>
         </nav>
